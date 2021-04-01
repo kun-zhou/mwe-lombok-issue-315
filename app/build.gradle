@@ -1,0 +1,46 @@
+plugins {
+    id 'application'
+    
+    // If NOT applied, generated protobuf source code can be found in 
+    // build/generated/source, and the corresponding classes can be found 
+    // in build/classes.
+    // If applied, lombok creates the build/delombok directory, generated
+    // protobuf source code can still be found at the original spot, but the
+    // corresponding classes are now missing.
+    id 'org.checkerframework' version '0.5.17'
+
+    id "com.google.protobuf" version "0.8.15"
+    id "io.freefair.lombok" version "5.3.0"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation 'junit:junit:4.13'
+
+    implementation 'org.projectlombok:lombok:1.18.16'
+    implementation 'com.google.protobuf:protobuf-java:3.0.0'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'mwe.App'
+}
+
+sourceSets {
+  main {
+    proto {
+      srcDir 'proto'
+    }
+  }
+}
+
+protobuf {
+  protoc {
+    // The artifact spec for the Protobuf Compiler
+    artifact = 'com.google.protobuf:protoc:3.0.0'
+  }
+}
